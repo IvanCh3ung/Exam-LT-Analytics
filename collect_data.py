@@ -25,18 +25,6 @@ class DataPair:
     def __hash__(self) -> int:
         return 1
 
-
-#def get_column_name(column_type, data):
-#    if (not isinstance(column_type, str) or not isinstance(data, pd.DataFrame)):
-#        raise TypeError(f"Incorrect parameter type. Must be get_column_name(str, pd.DataFrame). Actual types are {type(column_type)}., {type(data)})")
-#    while True:
-#        column_name = input(f"Please enter the name of the {column_type} column: ")
-#        if column_name in data.columns :
-#            return column_name
-#        else:
-#            print("The column name entered does not appear in the CSV. Please try again.")
-    
-
 def generate_data(pair_dict, data_path):
     data = pd.read_csv(data_path)
     if is_collecting_midterm_data:
@@ -89,14 +77,6 @@ dataSetFe = {
     fe_2023w2_path : [path_2023w2] 
 }
 
-# def generate_all_data(out_path_2022s, out_path_2022w1, out_path_2022w2, out_path_2023s, out_path_2023w1, out_path_2023w2):
-#     generate_and_write_data([path_2022s1,path_2022s12,path_2022s2], out_path_2022s)
-#     generate_and_write_data([path_2022w1,path_2022w12], out_path_2022w1)
-#     generate_and_write_data([path_2022w2], out_path_2022w2)
-#     generate_and_write_data([path_2023s1, path_2023s12, path_2023s2], out_path_2023s)
-#     generate_and_write_data([path_2023w1], out_path_2023w1)
-#     generate_and_write_data([path_2023w2], out_path_2023w2)
-
 def generate_all_data(dataSet):
     for outputPath, inputPath in dataSet.items():
         generate_and_write_data(outputPath, inputPath)
@@ -111,10 +91,8 @@ def generate_and_write_data(out_path ,data_paths):
 def main():
     global is_collecting_midterm_data
     is_collecting_midterm_data = True
-    #generate_all_data(mt_2022s_path, mt_2022w1_path, mt_2022w2_path, mt_2023S_path, mt_2023w1_path, mt_2023w2_path)
     generate_all_data(dataSetMt)
     is_collecting_midterm_data = False
-    #generate_all_data(fe_2022s_path, fe_2022w1_path, fe_2022w2_path, fe_2023S_path, fe_2023w1_path, fe_2023w2_path)
     generate_all_data(dataSetFe)
 
 if __name__ == "__main__":
